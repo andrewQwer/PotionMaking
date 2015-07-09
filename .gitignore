@@ -170,6 +170,7 @@ ClientBin/
 *.dbproj.schemaview
 *.pfx
 *.publishsettings
+*.idea
 node_modules/
 orleans.codegen.cs
 
