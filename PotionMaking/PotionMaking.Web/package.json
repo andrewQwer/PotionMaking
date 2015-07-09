@@ -1,0 +1,28 @@
+{
+  "name": "potion.making",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Scripts/app.js",
+  "scripts": {
+    "start": "watchify -o Scripts/bundle.js -v -d Scripts/app.js",
+    "build": "browserify . | uglifyjs -o Scripts/bundle.min.js"
+  },
+  "author": "",
+  "devDependencies": {
+    "browserify": "^6.2.0",
+    "envify": "^3.0.0",
+    "reactify": "^0.15.2",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.1.1"
+  },
+  "license": "ISC",
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "dependencies": {
+    "flux": "^2.0.3",
+    "react": "^0.13.3"
+  }
+}
