@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotionMaking.Web", "PotionMaking.Web\PotionMaking.Web.csproj", "{312EB358-7ADE-49B5-9969-75D9BBCC9D43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortionMaking.Infrastructure", "PortionMaking.Infrastructure\PortionMaking.Infrastructure.csproj", "{684464AF-9B86-4807-A35B-E571F815CBE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotionMaking.Tests", "PotionMaking.Tests\PotionMaking.Tests.csproj", "{FDD26DE8-F890-41B1-BFE5-704F36C9104B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{312EB358-7ADE-49B5-9969-75D9BBCC9D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{312EB358-7ADE-49B5-9969-75D9BBCC9D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{312EB358-7ADE-49B5-9969-75D9BBCC9D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{684464AF-9B86-4807-A35B-E571F815CBE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{684464AF-9B86-4807-A35B-E571F815CBE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{684464AF-9B86-4807-A35B-E571F815CBE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{684464AF-9B86-4807-A35B-E571F815CBE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD26DE8-F890-41B1-BFE5-704F36C9104B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD26DE8-F890-41B1-BFE5-704F36C9104B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD26DE8-F890-41B1-BFE5-704F36C9104B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD26DE8-F890-41B1-BFE5-704F36C9104B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
