@@ -4,8 +4,7 @@
   "description": "",
   "main": "Scripts/app.js",
   "scripts": {
-    "start": "watchify -o Scripts/bundle.js -v -d Scripts/app.js",
-    "build": "browserify . | uglifyjs -o Scripts/bundle.min.js"
+    "start": "watchify -o Scripts/bundle.js -v -d Scripts/app.js"
   },
   "author": "",
   "devDependencies": {
