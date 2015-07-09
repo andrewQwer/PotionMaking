@@ -1,0 +1,20 @@
+{
+  "name": "PotionMaking.Web",
+  "version": "1.0.0",
+  "homepage": "https://github.com/andrewQwer/PotionMaking",
+  "authors": [
+    "andrewQwer <andrew_qwer@mail.ru>"
+  ],
+  "description": "PotionMaking web project",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
