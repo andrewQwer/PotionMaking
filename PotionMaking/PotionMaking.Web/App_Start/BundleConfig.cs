@@ -13,7 +13,7 @@ namespace PotionMaking.Web
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/Vendor/bootstrap/dist/bootstrap.js"
+                "~/Scripts/Vendor/bootstrap/dist/js/bootstrap.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
