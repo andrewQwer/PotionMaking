@@ -131,8 +131,6 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\index.js" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
