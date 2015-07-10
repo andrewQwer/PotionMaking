@@ -2,9 +2,9 @@
   "name": "potion.making",
   "version": "1.0.0",
   "description": "",
-  "main": "Scripts/app/app.js",
+  "main": "Scripts/app/components/index.js",
   "scripts": {
-    "watch": "watchify -o Scripts/bundle.js -v -d Scripts/app/index.js"
+    "watch": "watchify -o Scripts/bundle.js -v -d Scripts/app/components/index.js"
   },
   "author": "",
   "dependencies": {
