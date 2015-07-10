@@ -131,7 +131,8 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\index.js" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -364,9 +365,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".bowerrc" />
-    <Content Include="bower.json" />
-    <Content Include="package.json" />
     <None Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
