@@ -9,7 +9,6 @@ var App = React.createClass({
         return (
             <div>
                 Hello, world
-                <RouteHandler/>
             </div>
         )
     }
