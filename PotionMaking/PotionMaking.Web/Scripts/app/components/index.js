@@ -4,7 +4,11 @@ var React = require('react');
 
 var Index = React.createClass({
     render:function(){
-        return <div>{this.props.children}</div>
+        return (
+            <div className="pm-app">
+                {this.props.children}
+            </div>
+        )
     }
 });
 
