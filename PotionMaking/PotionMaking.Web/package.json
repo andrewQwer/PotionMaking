@@ -2,16 +2,16 @@
   "name": "potion.making",
   "version": "1.0.0",
   "description": "",
-  "main": "Scripts/app/components/index.js",
+  "main": "Scripts/app/bootstrap.js",
   "scripts": {
-    "watch": "watchify -o Scripts/bundle.js -v -d Scripts/app/components/index.js"
+    "watch": "watchify -o Scripts/bundle.js -v -d Scripts/app/bootstrap.js"
   },
   "author": "",
   "dependencies": {
     "flux": "^2.0.3",
     "keymirror": "^0.1.1",
     "react": "^0.13.3",
-    "react-router": "^0.13.3"
+    "react-router": "^1.0.0-beta3"
   },
   "devDependencies": {
     "browserify": "^6.2.0",
