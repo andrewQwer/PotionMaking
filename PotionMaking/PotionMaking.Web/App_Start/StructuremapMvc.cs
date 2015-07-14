@@ -30,20 +30,20 @@ namespace PotionMaking.Web.App_Start {
 	using PotionMaking.Web.DependencyResolution;
 
     using StructureMap;
-    
+
 	public static class StructuremapMvc {
         #region Public Properties
 
         public static StructureMapDependencyScope StructureMapDependencyScope { get; set; }
 
         #endregion
-		
+
 		#region Public Methods and Operators
-		
+
 		public static void End() {
             StructureMapDependencyScope.Dispose();
         }
-		
+
         public static void Start() {
             IContainer container = IoC.Initialize();
             StructureMapDependencyScope = new StructureMapDependencyScope(container);
