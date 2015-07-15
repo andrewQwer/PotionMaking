@@ -6,6 +6,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.Owin;
+using PotionMaking.Web;
+
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace PotionMaking.Web
 {
