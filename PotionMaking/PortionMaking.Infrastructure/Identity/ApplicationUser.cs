@@ -9,14 +9,20 @@ namespace PortionMaking.Infrastructure.Identity
     public class ApplicationUser : IdentityUser
     {
         // A default Constructor:
-        public ApplicationUser() { }
+        public ApplicationUser()
+        {
+            CreatedDate = DateTime.UtcNow;
+        }
 
         public ApplicationUser(string email)
             : base(email)
+
         {
             // Use the email for both user name AND email:
             UserName = email;
         }
+
+        public DateTime CreatedDate { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

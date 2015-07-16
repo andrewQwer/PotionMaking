@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Formatting;
@@ -15,27 +16,17 @@ namespace PotionMaking.Web
 {
     public class Startup
     {
-        public void Configure(IAppBuilder app)
+        public void Configuration(IAppBuilder app)
         {
             HttpConfiguration httpConfig = new HttpConfiguration();
 
-            ConfigureOAuthTokenGeneration(app);
+            ConfigureAuth(app);
 
             ConfigureWebApi(httpConfig);
 
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             app.UseWebApi(httpConfig);
-        }
-
-        private void ConfigureOAuthTokenGeneration(IAppBuilder app)
-        {
-            // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-
-            // Plugin the OAuth bearer JSON Web Token tokens generation and Consumption will be here
-
         }
 
         private void ConfigureWebApi(HttpConfiguration config)
@@ -48,11 +39,12 @@ namespace PotionMaking.Web
 
         public void ConfigureAuth(IAppBuilder app)
         {
+            Database.SetInitializer<ApplicationDbContext>(null);
             // Configure the db context, user manager and role
             // manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+            //app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
             // Enable the application to use a cookie to store information for the
             // signed in user and to use a cookie to temporarily store information
