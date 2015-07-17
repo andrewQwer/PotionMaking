@@ -13,7 +13,7 @@ namespace PortionMaking.Infrastructure.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201507161139286_InitialCreate"; }
+            get { return "201507171328205_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

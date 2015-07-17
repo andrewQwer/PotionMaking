@@ -67,7 +67,7 @@ namespace PotionMaking.Web.Controllers
                 return GetErrorResult(addUserResult);
             }
 
-            Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
+            var locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
 
             return Created(locationHeader, TheModelFactory.Create(user));
         }

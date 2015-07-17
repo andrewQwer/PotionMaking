@@ -97,9 +97,9 @@
     <Compile Include="Identity\ApplicationDbContext.cs" />
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Migrations\201507161139286_InitialCreate.cs" />
-    <Compile Include="Migrations\201507161139286_InitialCreate.Designer.cs">
-      <DependentUpon>201507161139286_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201507171328205_InitialCreate.cs" />
+    <Compile Include="Migrations\201507171328205_InitialCreate.Designer.cs">
+      <DependentUpon>201507171328205_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CreateUserViewModel.cs" />
@@ -111,8 +111,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507161139286_InitialCreate.resx">
-      <DependentUpon>201507161139286_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507171328205_InitialCreate.resx">
+      <DependentUpon>201507171328205_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
