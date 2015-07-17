@@ -8,9 +8,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using Owin;
 using PortionMaking.Infrastructure.Identity;
+using PotionMaking.Web.App_Start;
+using PotionMaking.Web.DependencyResolution;
+using PotionMaking.Web.Providers;
 
 namespace PotionMaking.Web
 {
@@ -18,7 +22,7 @@ namespace PotionMaking.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            HttpConfiguration httpConfig = new HttpConfiguration();
+            var httpConfig = new HttpConfiguration();
 
             ConfigureAuth(app);
 
@@ -32,6 +36,7 @@ namespace PotionMaking.Web
         private void ConfigureWebApi(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
+            config.DependencyResolver = new StructureMapWebApiDependencyResolver(StructuremapMvc.StructureMapDependencyScope.Container);
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -50,23 +55,23 @@ namespace PotionMaking.Web
             // signed in user and to use a cookie to temporarily store information
             // about a user logging in with a third party login provider
             // Configure the sign in cookie
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
-                Provider = new CookieAuthenticationProvider
-                {
-                    // Enables the application to validate the security stamp when the user
-                    // logs in. This is a security feature which is used when you
-                    // change a password or add an external login to your account.
-                    OnValidateIdentity = SecurityStampValidator
-                        .OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user)
-                        => user.GenerateUserIdentityAsync(manager))
-                }
-            });
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+//            app.UseCookieAuthentication(new CookieAuthenticationOptions
+//            {
+//                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+//                LoginPath = new PathString("/Account/Login"),
+//                Provider = new CookieAuthenticationProvider
+//                {
+//                    // Enables the application to validate the security stamp when the user
+//                    // logs in. This is a security feature which is used when you
+//                    // change a password or add an external login to your account.
+//                    OnValidateIdentity = SecurityStampValidator
+//                        .OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+//                        validateInterval: TimeSpan.FromMinutes(30),
+//                        regenerateIdentity: (manager, user)
+//                        => user.GenerateUserIdentityAsync(manager))
+//                }
+//            });
+//            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
 
             // Enables the application to temporarily store user information when
@@ -81,6 +86,18 @@ namespace PotionMaking.Web
             // you logged in from. This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(
                 DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+
+            var OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/api/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                Provider = new CustomOAuthProvider()
+            };
+
+            // Token Generation
+            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             // Uncomment the following lines to enable logging in
             // with third party login providers

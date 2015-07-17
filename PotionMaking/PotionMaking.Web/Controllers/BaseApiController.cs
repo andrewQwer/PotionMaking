@@ -21,10 +21,6 @@ namespace PotionMaking.Web.Controllers
             }
         }
 
-        public BaseApiController()
-        {
-        }
-
         protected ModelFactory TheModelFactory
         {
             get

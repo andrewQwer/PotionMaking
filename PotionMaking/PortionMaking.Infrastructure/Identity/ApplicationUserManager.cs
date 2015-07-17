@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using PortionMaking.Infrastructure.Services;
 
 namespace PortionMaking.Infrastructure.Identity
 {
@@ -17,6 +19,31 @@ namespace PortionMaking.Infrastructure.Identity
             var appDbContext = context.Get<ApplicationDbContext>();
             var appUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(appDbContext));
 
+            //email confirmation
+            appUserManager.EmailService = new EmailService();
+            var dataProtectionProvider = options.DataProtectionProvider;
+            if (dataProtectionProvider != null)
+            {
+                appUserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"))
+                {
+                    //Code for email confirmation and reset password life time
+                    TokenLifespan = TimeSpan.FromHours(6)
+                };
+            }
+
+            //username policy
+            appUserManager.UserValidator = new UserValidator<ApplicationUser>(appUserManager)
+            {
+                AllowOnlyAlphanumericUserNames = true,
+                RequireUniqueEmail = true
+            };
+
+            //password policy
+            appUserManager.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 6,
+                RequireDigit = false
+            };
             return appUserManager;
         }
     }
