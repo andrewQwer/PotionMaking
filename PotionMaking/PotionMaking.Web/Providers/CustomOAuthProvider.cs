@@ -10,10 +10,9 @@ namespace PotionMaking.Web.Providers
 {
     public class CustomOAuthProvider : OAuthAuthorizationServerProvider
     {
-        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
-            return Task.FromResult<object>(null);
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -38,11 +37,12 @@ namespace PotionMaking.Web.Providers
                 return;
             }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            var identity = await user.GenerateUserIdentityAsync(userManager);
             identity.AddClaim(new Claim("sub", context.UserName));
             identity.AddClaim(new Claim("role", "user"));
 
-            context.Validated(identity);
+            var ticket = new AuthenticationTicket(identity, null);
+            context.Validated(ticket);
 
         }
     }
