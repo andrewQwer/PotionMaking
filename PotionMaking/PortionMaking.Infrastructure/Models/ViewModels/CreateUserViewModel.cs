@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PortionMaking.Infrastructure.Models
+namespace PortionMaking.Infrastructure.Models.ViewModels
 {
     public class CreateUserViewModel
     {

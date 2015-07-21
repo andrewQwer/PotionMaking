@@ -15,21 +15,31 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using MediatR;
+using Microsoft.Practices.ServiceLocation;
 using PortionMaking.Infrastructure.Services;
+using PotionMaking.Web.App_Start;
 
 namespace PotionMaking.Web.DependencyResolution {
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 
-    public class DefaultRegistry : Registry {
+    public class ServiceRegistry : Registry {
         #region Constructors and Destructors
 
-        public DefaultRegistry() {
+        public ServiceRegistry() {
             Scan(
-                scan => {
-                    scan.AssemblyContainingType<AuthService>();
-                    scan.WithDefaultConventions();
+                scanner => {
+                    scanner.AssemblyContainingType<AuthService>();
+                    scanner.WithDefaultConventions();
+                    scanner.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
+                    scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>));
+                    scanner.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
+                    scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
                 });
+
+            For<ServiceLocatorProvider>().Use(new ServiceLocatorProvider(() => StructuremapMvc.StructureMapDependencyScope));
+            For<IMediator>().Use<Mediator>();
         }
 
         #endregion

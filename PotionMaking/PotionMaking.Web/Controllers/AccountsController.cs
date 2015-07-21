@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using PortionMaking.Infrastructure.Identity;
 using PortionMaking.Infrastructure.Models;
+using PortionMaking.Infrastructure.Models.ViewModels;
 using PortionMaking.Infrastructure.Services;
 
 namespace PotionMaking.Web.Controllers
@@ -68,7 +69,7 @@ namespace PotionMaking.Web.Controllers
                 Email = createUserModel.Email
             };
 
-            var addUserResult = await this.AppUserManager.CreateAsync(user, createUserModel.Password);
+            var addUserResult = await AppUserManager.CreateAsync(user, createUserModel.Password);
 
             if (!addUserResult.Succeeded)
             {

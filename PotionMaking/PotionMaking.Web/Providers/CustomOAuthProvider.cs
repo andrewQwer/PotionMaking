@@ -10,6 +10,10 @@ namespace PotionMaking.Web.Providers
 {
     public class CustomOAuthProvider : OAuthAuthorizationServerProvider
     {
+        public CustomOAuthProvider()
+        {
+
+        }
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();

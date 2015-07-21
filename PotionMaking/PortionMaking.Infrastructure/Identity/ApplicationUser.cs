@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.Cookies;
 
 namespace PortionMaking.Infrastructure.Identity
 {
@@ -12,14 +13,6 @@ namespace PortionMaking.Infrastructure.Identity
         public ApplicationUser()
         {
             CreatedDate = DateTime.UtcNow;
-        }
-
-        public ApplicationUser(string email)
-            : base(email)
-
-        {
-            // Use the email for both user name AND email:
-            UserName = email;
         }
 
         public DateTime CreatedDate { get; set; }

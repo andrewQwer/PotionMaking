@@ -29,8 +29,8 @@ namespace PotionMaking.Web.DependencyResolution {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                     scan.With(new ControllerConvention());
+                    scan.LookForRegistries();
                 });
-                c.AddRegistry<DefaultRegistry>();
             });
         }
     }
