@@ -15,15 +15,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace PotionMaking.Web.DependencyResolution {
-    using System;
-    using System.Web.Mvc;
+using System;
+using System.Web.Mvc;
+using StructureMap.Configuration.DSL;
+using StructureMap.Graph;
+using StructureMap.Pipeline;
+using StructureMap.TypeRules;
 
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
-    using StructureMap.Pipeline;
-    using StructureMap.TypeRules;
-
+namespace PotionMaking.Web.DependencyResolution.Conventions {
     public class ControllerConvention : IRegistrationConvention {
         #region Public Methods and Operators
 

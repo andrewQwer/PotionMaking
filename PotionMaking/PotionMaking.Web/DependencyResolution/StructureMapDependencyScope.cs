@@ -24,7 +24,7 @@ namespace PotionMaking.Web.DependencyResolution {
     using Microsoft.Practices.ServiceLocation;
 
     using StructureMap;
-	
+
     /// <summary>
     /// The structure map dependency scope.
     /// </summary>

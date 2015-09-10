@@ -15,6 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PotionMaking.Web.DependencyResolution.Conventions;
 using StructureMap.Graph;
 
 namespace PotionMaking.Web.DependencyResolution {

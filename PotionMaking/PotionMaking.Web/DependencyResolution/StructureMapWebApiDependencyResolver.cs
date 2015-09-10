@@ -16,6 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Web.Http.Dependencies;
+using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
 namespace PotionMaking.Web.DependencyResolution
@@ -50,8 +51,9 @@ namespace PotionMaking.Web.DependencyResolution
         /// </returns>
         public IDependencyScope BeginScope()
         {
-            IContainer child = this.Container.GetNestedContainer();
-            return new StructureMapWebApiDependencyResolver(child);
+            var nestedContainer = this.Container.GetNestedContainer();
+            var resolver = new StructureMapWebApiDependencyResolver(nestedContainer);
+            return resolver;
         }
 
         #endregion
