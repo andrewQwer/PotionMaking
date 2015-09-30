@@ -19,6 +19,7 @@ namespace PortionMaking.Infrastructure.Migrations
         protected override void Seed(PortionMaking.Infrastructure.Identity.ApplicationDbContext context)
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
             var user = new ApplicationUser()
             {
@@ -28,6 +29,17 @@ namespace PortionMaking.Infrastructure.Migrations
             };
 
             manager.Create(user, "MySuperP@ssword!");
+
+            if (roleManager.Roles.Count() == 0)
+            {
+                roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
+
+            var adminUser = manager.FindByName("SuperPowerUser");
+
+            manager.AddToRoles(adminUser.Id, "SuperAdmin", "Admin");
         }
     }
 }

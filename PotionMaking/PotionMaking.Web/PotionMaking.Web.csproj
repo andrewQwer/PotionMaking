@@ -221,6 +221,7 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="DependencyResolution\Conventions\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\ServiceRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />

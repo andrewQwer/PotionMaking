@@ -49,7 +49,7 @@ namespace PotionMaking.Web
             // manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
             // Enables the application to temporarily store user information when
             // they are verifying the second factor in the two-factor authentication process.
