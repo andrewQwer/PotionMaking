@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PortionMaking.Infrastructure.Models
+namespace PortionMaking.Models
 {
     public class UserReturnModel
     {

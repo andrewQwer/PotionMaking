@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Web.Http.Routing;
 using Microsoft.AspNet.Identity.EntityFramework;
 using PortionMaking.Infrastructure.Identity;
-using PortionMaking.Infrastructure.Models;
+using PortionMaking.Models;
 
 namespace PortionMaking.Infrastructure.Factories
 {

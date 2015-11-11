@@ -11,10 +11,9 @@ var Register = require('./components/Register');
 
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
-var history = require('../../node_modules/react-router/lib/HashHistory').history;
 
 React.render((
-    <Router history={history}>
+    <Router>
         <Route path="/" component={Index}>
             <Route path="app" component={App} />
             <Route path="auth" component={Auth}>

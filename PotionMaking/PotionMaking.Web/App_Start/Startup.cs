@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using Owin;
@@ -20,6 +21,7 @@ namespace PotionMaking.Web
 {
     public class Startup
     {
+        internal static IDataProtectionProvider DataProtectionProvider { get; private set; }
         public void Configuration(IAppBuilder app)
         {
             var httpConfig = new HttpConfiguration();
@@ -45,6 +47,7 @@ namespace PotionMaking.Web
         public void ConfigureAuth(IAppBuilder app)
         {
             Database.SetInitializer<ApplicationDbContext>(null);
+            DataProtectionProvider = app.GetDataProtectionProvider();
             // Configure the db context, user manager and role
             // manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);

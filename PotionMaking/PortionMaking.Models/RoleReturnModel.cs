@@ -1,4 +1,4 @@
-﻿namespace PortionMaking.Infrastructure.Models
+﻿namespace PortionMaking.Models
 {
     public class RoleReturnModel
     {

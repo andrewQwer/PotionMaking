@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PortionMaking.Infrastructure.Models.ViewModels
+namespace PortionMaking.Models.ViewModels
 {
     public class ChangePasswordViewModel
     {

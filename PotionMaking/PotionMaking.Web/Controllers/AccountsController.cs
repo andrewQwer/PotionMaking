@@ -3,11 +3,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
+using MediatR;
 using Microsoft.AspNet.Identity;
 using PortionMaking.Infrastructure.Identity;
-using PortionMaking.Infrastructure.Models;
-using PortionMaking.Infrastructure.Models.ViewModels;
+using PortionMaking.Infrastructure.Mediator.Requests;
 using PortionMaking.Infrastructure.Services;
+using PortionMaking.Models.ViewModels;
 
 namespace PotionMaking.Web.Controllers
 {
@@ -15,9 +16,11 @@ namespace PotionMaking.Web.Controllers
     public class AccountsController : BaseApiController
     {
         private IAuthService authService;
-        public AccountsController(IAuthService authService)
+        private IMediator mediator;
+        public AccountsController(IAuthService authService, IMediator mediator)
         {
             this.authService = authService;
+            this.mediator = mediator;
         }
 
         [Authorize(Roles = "Admin")]
@@ -58,34 +61,28 @@ namespace PotionMaking.Web.Controllers
         }
 
         [Route("create")]
-        public async Task<IHttpActionResult> CreateUser(CreateUserViewModel createUserModel)
+        [HttpPost]
+        public async Task<IHttpActionResult> CreateUser([FromBody]CreateUserViewModel createUserModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            var user = new ApplicationUser()
+            try
             {
-                UserName = createUserModel.Username,
-                Email = createUserModel.Email
-            };
+                var addUserResult = await mediator.SendAsync(new RegisterUserRequest(createUserModel));
 
-            var addUserResult = await AppUserManager.CreateAsync(user, createUserModel.Password);
-
-            if (!addUserResult.Succeeded)
+                if (!addUserResult.Succeeded)
+                {
+                    return GetErrorResult(addUserResult);
+                }
+            }
+            catch (Exception ex)
             {
-                return GetErrorResult(addUserResult);
+                return BadRequest("");
             }
 
-
-            var code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = user.Id, code = code }));
-            await AppUserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-            var locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
-
-            return Created(locationHeader, TheModelFactory.Create(user));
+            return Ok(createUserModel);
         }
 
         [HttpGet]

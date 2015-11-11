@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PortionMaking.Infrastructure.Models
+namespace PortionMaking.Models
 {
     public class CreateRoleBindingModel
     {

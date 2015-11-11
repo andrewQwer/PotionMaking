@@ -23,7 +23,6 @@ namespace PotionMaking.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var res = mediator.Send(new PingRequest());
             return View();
         }
     }

@@ -224,7 +224,8 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="DependencyResolution\Conventions\ControllerConvention.cs" />
-    <Compile Include="DependencyResolution\ServiceRegistry.cs" />
+    <Compile Include="DependencyResolution\Registries\IdentityRegistry.cs" />
+    <Compile Include="DependencyResolution\Registries\ServiceRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
@@ -485,6 +486,10 @@
     <ProjectReference Include="..\PortionMaking.Infrastructure\PortionMaking.Infrastructure.csproj">
       <Project>{684464AF-9B86-4807-A35B-E571F815CBE0}</Project>
       <Name>PortionMaking.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortionMaking.Models\PortionMaking.Models.csproj">
+      <Project>{de252429-79cb-4108-9b17-88320c2d9d59}</Project>
+      <Name>PortionMaking.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

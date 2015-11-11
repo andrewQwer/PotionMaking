@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using PortionMaking.Infrastructure.Models;
+using PortionMaking.Models;
 
 namespace PotionMaking.Web.Controllers
 {
