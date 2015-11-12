@@ -8,15 +8,15 @@ var Register = React.createClass({
             <div className="register-component">
                 <form>
                     <div className="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
+                        <label htmlFor="exampleInputEmail1">Email address</label>
                         <input type="email" className="form-control" placeholder="Email"/>
                     </div>
                     <div className="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label htmlFor="exampleInputPassword1">Password</label>
                         <input type="password" className="form-control" />
                     </div>
                     <div className="form-group">
-                        <label for="exampleInputPassword1">Repeat Password</label>
+                        <label htmlFor="exampleInputPassword1">Repeat Password</label>
                         <input type="password" className="form-control" />
                     </div>
                     <div className="form-group">

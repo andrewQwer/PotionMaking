@@ -8,9 +8,9 @@ var Auth = React.createClass({
     render: function () {
         return (
             <div className="auth-component">
-                <Link to="auth/login" activeClassName='active'>Login</Link>
-                <Link to="auth/register" activeClassName='active'>Register</Link>
-                {this.props.children || <Login/>}
+                <Link to="/login" activeClassName='active'>Login</Link>
+                <Link to="/register" activeClassName='active'>Register</Link>
+                {this.props.children}
             </div>
         )
     }
