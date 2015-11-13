@@ -3,11 +3,16 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
+using AutoMapper;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNet.Identity;
+using PortionMaking.Infrastructure.Exceptions;
 using PortionMaking.Infrastructure.Identity;
+using PortionMaking.Infrastructure.Logger;
 using PortionMaking.Infrastructure.Mediator.Requests;
 using PortionMaking.Infrastructure.Services;
+using PortionMaking.Models.Constants;
 using PortionMaking.Models.ViewModels;
 
 namespace PotionMaking.Web.Controllers
@@ -64,22 +69,23 @@ namespace PotionMaking.Web.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> CreateUser([FromBody]CreateUserViewModel createUserModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
-                var addUserResult = await mediator.SendAsync(new RegisterUserRequest(createUserModel));
+                var addUserResult = mediator.Send(Mapper.Map<RegisterUserRequest>(createUserModel));
 
                 if (!addUserResult.Succeeded)
                 {
                     return GetErrorResult(addUserResult);
                 }
             }
+            catch (CustomValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (Exception ex)
             {
-                return BadRequest("");
+                Log.Logger.Write("Error on user registration", ex);
+                return BadRequest(ErrorMessages.Oops);
             }
 
             return Ok(createUserModel);

@@ -15,10 +15,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using FluentValidation;
 using MediatR;
 using Microsoft.Practices.ServiceLocation;
+using PortionMaking.Infrastructure.Mediator.Handlers;
 using PortionMaking.Infrastructure.Services;
+using PortionMaking.Infrastructure.Settings;
 using PotionMaking.Web.App_Start;
+using PotionMaking.Web.DependencyResolution.Conventions;
 using StructureMap.Configuration.DSL;
 
 namespace PotionMaking.Web.DependencyResolution.Registries {
@@ -31,13 +35,18 @@ namespace PotionMaking.Web.DependencyResolution.Registries {
                     scanner.AssemblyContainingType<AuthService>();
                     scanner.AssemblyContainingType<IMediator>();
                     scanner.WithDefaultConventions();
+                    scanner.Convention<SettingsConvention>();
                     scanner.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
                     scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>));
                     scanner.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
                     scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
+                    scanner.ConnectImplementationsToTypesClosing(typeof(IValidator<>));
                 });
-
+            For(typeof(IRequestHandler<,>)).DecorateAllWith(typeof(ValidatorHandler<,>));
+            For<ISettingsProvider>().Singleton().Use<WebConfigSettingsProvider>();
             For<ServiceLocatorProvider>().Use(new ServiceLocatorProvider(() => StructuremapMvc.StructureMapDependencyScope));
+            For<IServiceLocator>().Use(() => StructuremapMvc.StructureMapDependencyScope);
+
         }
 
         #endregion

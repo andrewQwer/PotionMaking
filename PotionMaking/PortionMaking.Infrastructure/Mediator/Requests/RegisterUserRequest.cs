@@ -6,17 +6,22 @@ using PortionMaking.Models.ViewModels;
 
 namespace PortionMaking.Infrastructure.Mediator.Requests
 {
-    public class RegisterUserRequest : IAsyncRequest<IdentityResult>
+    public class RegisterUserRequest : IRequest<IdentityResult>
     {
-        public CreateUserViewModel CreateUserModel { get; set; }
+        public string Email { get; set; }
 
-        public RegisterUserRequest(CreateUserViewModel createUserModel)
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public string ConfirmPassword { get; set; }
+
+        public RegisterUserRequest()
         {
-            CreateUserModel = createUserModel;
         }
     }
 
-    public class RegisterUserRequestHandler : IAsyncRequestHandler<RegisterUserRequest, IdentityResult>
+    public class RegisterUserRequestHandler : IRequestHandler<RegisterUserRequest, IdentityResult>
     {
         private ApplicationUserManager userManager;
 
@@ -25,15 +30,15 @@ namespace PortionMaking.Infrastructure.Mediator.Requests
             this.userManager = userManager;
         }
 
-        public async Task<IdentityResult> Handle(RegisterUserRequest request)
+        public IdentityResult Handle(RegisterUserRequest request)
         {
             var user = new ApplicationUser()
             {
-                UserName = request.CreateUserModel.Username,
-                Email = request.CreateUserModel.Email
+                UserName = request.Username,
+                Email = request.Email
             };
 
-            var addUserResult = await userManager.CreateAsync(user, request.CreateUserModel.Password);
+            var addUserResult = userManager.CreateAsync(user, request.Password).Result;
             return addUserResult;
         }
     }

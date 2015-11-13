@@ -16,6 +16,8 @@ namespace PotionMaking.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Automapper.Register();
+            Logs.Configure();
         }
     }
 }
