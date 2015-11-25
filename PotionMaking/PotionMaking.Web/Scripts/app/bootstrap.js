@@ -13,7 +13,6 @@
     var auth = require('./auth')
 
 function requireAuth(nextState, replaceState) {
-    debugger
     if (!auth.loggedIn())
         replaceState({ nextPathname: nextState.location.pathname }, '/login')
 }

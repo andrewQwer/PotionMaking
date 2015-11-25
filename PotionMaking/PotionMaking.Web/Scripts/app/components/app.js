@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var Link = require('react-router').Link;
 var auth = require('../auth')
 var App = React.createClass({
     getInitialState() {
@@ -17,7 +18,7 @@ var App = React.createClass({
 
     componentWillMount() {
         auth.onChange = this.updateAuth
-        auth.login()
+        //auth.login()
     },
     render: function () {
         return (

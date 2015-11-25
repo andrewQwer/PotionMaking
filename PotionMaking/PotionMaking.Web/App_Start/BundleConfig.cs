@@ -11,7 +11,8 @@ namespace PotionMaking.Web
             BundleTable.EnableOptimizations = false;
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/Vendor/jquery/dist/jquery.js"
+                "~/Scripts/Vendor/jquery/dist/jquery.js",
+                "~/Scripts/Vendor/jquery-validation/dist/jquery.validate.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
