@@ -3,8 +3,11 @@
 var React = require('react');
 var RegisterAction = require('../actions/RegisterAction');
 var UserStore = require('../stores/UserStore');
+var TokenStore = require('../stores/TokenStore');
+var History = require('react-router').History;
 
 var Register = React.createClass({
+    mixins: [History],
     submitRegistration: function () {
         if ($('#reg-form').valid()) {
             var regData = {
@@ -14,6 +17,8 @@ var Register = React.createClass({
                 confirmPassword: this.refs.confirmPass.value,
             }
             RegisterAction.registerUser(regData);
+        } else {
+            toastr.error("Заполните правильно все необходимые поля")
         }
     },
     componentDidMount: function () {
@@ -27,19 +32,19 @@ var Register = React.createClass({
         });
         UserStore.addRegisterListener(this._onRegister);
         UserStore.addRegisterFailListener(this._onFailRegister);
-        console.log('Did mount register component')
     },
     componentWillUnmount: function () {
         UserStore.removeRegisterListener(this._onRegister);
         UserStore.removeRegisterFailListener(this._onFailRegister);
-        console.log('Unmount register component')
     },
     _onRegister: function () {
-        alert('User successfully registered');
+        //this will allow to open success page only after registration
+        var registrationToken = TokenStore.generateRegistrationToken();
+        this.history.pushState(null, '/registerSuccess', {rt: registrationToken});
     },
     _onFailRegister: function () {
         for (var item in arguments) {
-            alert(arguments[item]);
+            toastr.error(arguments[item]);
         }
     },
     render: function () {

@@ -20,12 +20,15 @@ namespace PotionMaking.Web
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/Vendor/toastr/toastr.js",
                 "~/Scripts/bundle.js"
                 ));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Scripts/Vendor/bootstrap/dist/css/bootstrap.css"));
+                "~/Scripts/Vendor/bootstrap/dist/css/bootstrap.css",
+                "~/Scripts/Vendor/toastr/toastr.css"
+                ));
         }
     }
 }

@@ -501,6 +501,10 @@
     <Content Include="Scripts\Vendor\jquery\src\var\support.js" />
     <Content Include="Scripts\Vendor\jquery\src\var\toString.js" />
     <Content Include="Scripts\Vendor\jquery\src\wrap.js" />
+    <Content Include="Scripts\Vendor\toastr\toastr.css" />
+    <Content Include="Scripts\Vendor\toastr\toastr.js" />
+    <Content Include="Scripts\Vendor\toastr\toastr.min.css" />
+    <Content Include="Scripts\Vendor\toastr\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -628,6 +632,12 @@
     <Content Include="Scripts\Vendor\jquery-validation\package.json" />
     <Content Include="Scripts\Vendor\jquery-validation\README.md" />
     <Content Include="Scripts\Vendor\jquery-validation\validation.jquery.json" />
+    <Content Include="Scripts\Vendor\toastr\.bower.json" />
+    <Content Include="Scripts\Vendor\toastr\bower.json" />
+    <Content Include="Scripts\Vendor\toastr\README.md" />
+    <Content Include="Scripts\Vendor\toastr\toastr.js.map" />
+    <Content Include="Scripts\Vendor\toastr\toastr.less" />
+    <Content Include="Scripts\Vendor\toastr\toastr.scss" />
     <None Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
