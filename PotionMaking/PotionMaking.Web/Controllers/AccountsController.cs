@@ -176,7 +176,7 @@ namespace PotionMaking.Web.Controllers
             if (rolesNotExists.Count() > 0)
             {
 
-                ModelState.AddModelError("", string.Format("Roles '{0}' does not exixts in the system", string.Join(",", rolesNotExists)));
+                ModelState.AddModelError("", string.Format("Roles '{0}' don't exist in the system", string.Join(",", rolesNotExists)));
                 return BadRequest(ModelState);
             }
 

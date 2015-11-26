@@ -96,7 +96,7 @@ namespace PotionMaking.Web.Controllers
 
                 if (appUser == null)
                 {
-                    ModelState.AddModelError("", String.Format("User: {0} does not exists", user));
+                    ModelState.AddModelError("", String.Format("User: {0} does not exist", user));
                     continue;
                 }
 
@@ -118,7 +118,7 @@ namespace PotionMaking.Web.Controllers
 
                 if (appUser == null)
                 {
-                    ModelState.AddModelError("", String.Format("User: {0} does not exists", user));
+                    ModelState.AddModelError("", String.Format("User: {0} does not exist", user));
                     continue;
                 }
 
