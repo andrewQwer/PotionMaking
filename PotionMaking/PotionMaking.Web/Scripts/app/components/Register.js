@@ -5,6 +5,7 @@ var RegisterAction = require('../actions/RegisterAction');
 var UserStore = require('../stores/UserStore');
 var TokenStore = require('../stores/TokenStore');
 var History = require('react-router').History;
+var config = require('../config');
 
 var Register = React.createClass({
     mixins: [History],
@@ -22,14 +23,15 @@ var Register = React.createClass({
         }
     },
     componentDidMount: function () {
-        $('#reg-form').validate({
+        var validation = $.extend({}, {
             rules: {
                 'reg-username': {required: true, minlength: 3},
-                'reg-email': {required: true, email: true, minlength: 3},
+                'reg-email': {required: true, email: true},
                 'reg-pass': {required: true, minlength: 6},
                 'reg-repeat-pass': {equalTo: '#reg-pass'}
             }
-        });
+        }, config.Validation.Registration);
+        $('#reg-form').validate(validation);
         UserStore.addRegisterListener(this._onRegister);
         UserStore.addRegisterFailListener(this._onFailRegister);
     },
@@ -38,7 +40,7 @@ var Register = React.createClass({
         UserStore.removeRegisterFailListener(this._onFailRegister);
     },
     _onRegister: function () {
-        //this will allow to open success page only after registration
+        //this will allow to open success page only once after registration
         var registrationToken = TokenStore.generateRegistrationToken();
         this.history.pushState(null, '/registerSuccess', {rt: registrationToken});
     },
