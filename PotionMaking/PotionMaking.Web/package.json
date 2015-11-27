@@ -4,9 +4,9 @@
   "description": "",
   "main": "Scripts/app/bootstrap.js",
   "scripts": {
-    "watch": "watchify Scripts/app/bootstrap.js -o Scripts/bundle.js -v -d",
-    "build-dev": "browserify Scripts/app/bootstrap.js -o Scripts/bundle.js -t [ babelify --presets [ es2015 react ] ]",
-    "build-prod": "browserify Scripts/app/bootstrap.js -o Scripts/bundle.js -t [ babelify --presets [ es2015 react ] ]"
+    "watch": "watchify Scripts/app/bootstrap.js -o Scripts/bundle.js -t [ babelify --presets [ es2015 react ] ] -v -d",
+    "build-dev": "browserify Scripts/app/bootstrap.js -o Scripts/bundle.js -t [ babelify --presets [ es2015 react ] ] -d",
+    "build-prod": "browserify Scripts/app/bootstrap.js -o Scripts/bundle.js -t [ babelify --presets [ es2015 react ] ] -d"
   },
   "author": "",
   "dependencies": {

@@ -35,7 +35,8 @@ namespace PortionMaking.Infrastructure.Mediator.Requests
             var user = new ApplicationUser()
             {
                 UserName = request.Username,
-                Email = request.Email
+                Email = request.Email,
+                EmailConfirmed = true
             };
 
             var addUserResult = userManager.CreateAsync(user, request.Password).Result;

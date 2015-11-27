@@ -44,7 +44,10 @@ userStore.dispatchToken = dispatcher.register(function (action) {
                 if (res.status == 400) {
                     var resObj = res.responseJSON;
                     var modelState = resObj.modelState;
-                    var errors = modelState[""];
+                    var errors;
+                    if (modelState) {
+                        errors = modelState[""];
+                    }
                     if (errors) {
                         userStore.emit(REGISTER_FAIL_EVENT, errors);
                     } else {
