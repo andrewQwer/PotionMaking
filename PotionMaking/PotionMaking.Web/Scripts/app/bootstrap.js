@@ -21,15 +21,15 @@ var hooks = require('./utils/routeHooks');
 
 ReactDOM.render(
 <Router history={browserHistory()}>
-    <Route path="/" component={Index}>
+    <Route path="/" component={Index} onEnter={hooks.checkAuthorized}>
         <Route path="app" component={App}/>
-        <Route path="auth" component={Auth}>
-            <IndexRoute component={Login}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/registerSuccess" component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
-        </Route>
         <Route path="about" component={About}/>
+    </Route>
+    <Route path="/auth" component={Auth}>
+        <IndexRoute component={Login}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
+        <Route path="/registerSuccess" component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
     </Route>
 </Router>,
 document.getElementById('pm-app'));

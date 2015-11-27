@@ -9,19 +9,6 @@ var config = require('../config');
 
 var Register = React.createClass({
     mixins: [History],
-    submitRegistration: function () {
-        if ($('#reg-form').valid()) {
-            var regData = {
-                username: this.refs.username.value,
-                email: this.refs.email.value,
-                password: this.refs.pass.value,
-                confirmPassword: this.refs.confirmPass.value,
-            }
-            RegisterAction.registerUser(regData);
-        } else {
-            toastr.error("Заполните правильно все необходимые поля")
-        }
-    },
     componentDidMount: function () {
         var validation = $.extend({}, {
             rules: {
@@ -49,18 +36,31 @@ var Register = React.createClass({
             toastr.error(arguments[item]);
         }
     },
+    submitRegistration: function () {
+        if ($('#reg-form').valid()) {
+            var regData = {
+                username: this.refs.username.value,
+                email: this.refs.email.value,
+                password: this.refs.pass.value,
+                confirmPassword: this.refs.confirmPass.value,
+            }
+            RegisterAction.registerUser(regData);
+        } else {
+            toastr.error("Заполните правильно все необходимые поля")
+        }
+    },
     render: function () {
         return (
             <div className="register-component">
                 <form id="reg-form">
                     <div className="form-group">
                         <label htmlFor="reg-username">Username</label>
-                        <input type="text" ref="username" name="reg-username" className="form-control"
+                        <input type="text" ref="username" id="reg-username" name="reg-username" className="form-control"
                                placeholder="Username"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="reg-email">Email address</label>
-                        <input type="text" ref="email" name="reg-email" className="form-control" placeholder="Email"/>
+                        <input type="text" ref="email" id="reg-email" name="reg-email" className="form-control" placeholder="Email"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="reg-pass">Password</label>
@@ -69,7 +69,7 @@ var Register = React.createClass({
                     </div>
                     <div className="form-group">
                         <label htmlFor="reg-repeat-pass">Repeat Password</label>
-                        <input type="password" ref="confirmPass" name="reg-repeat-pass" className="form-control"
+                        <input type="password" ref="confirmPass" id="reg-repeat-pass" name="reg-repeat-pass" className="form-control"
                                placeholder="Repeat password"/>
                     </div>
                     <div className="form-group">

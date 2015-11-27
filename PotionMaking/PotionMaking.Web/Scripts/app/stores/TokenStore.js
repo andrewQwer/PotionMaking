@@ -19,6 +19,16 @@ var tokenStore = {
         var token = this.generateToken();
         _registrationToken = token;
         return token;
+    },
+    setAuthToken: function(token) {
+        if (token) {
+            token.created = new Date();
+            localStorage.setItem('token', JSON.stringify(token));
+        }
+    },
+    getAuthToken: function(){
+        var token = JSON.parse(localStorage.getItem('token'));
+        return token;
     }
 };
 

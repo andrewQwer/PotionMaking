@@ -9,6 +9,12 @@ var hooks = {
         } else {
             TokenStore.clearRegistrationToken();
         }
+    },
+    checkAuthorized: function (nextState, replaceState) {
+        var token = TokenStore.getAuthToken();
+        if (!token) {
+            replaceState(null, '/login')
+        }
     }
 }
 module.exports = hooks;
