@@ -13,7 +13,7 @@ var hooks = {
     checkAuthorized: function (nextState, replaceState) {
         var token = TokenStore.getAuthToken();
         if (!token) {
-            replaceState(null, '/login')
+            replaceState({ nextPathname: nextState.location.pathname }, '/login')
         }
     }
 }

@@ -24,8 +24,13 @@ var Login = React.createClass({
         UserStore.removeLoginFailListener(this._onFailLogin);
     },
     _onLogin: function () {
-        //go to root path
-        this.history.pushState(null, '/');
+        //go to previous location or to root path
+        var location = this.props.location;
+        if (location.state && location.state.nextPathname) {
+            this.history.replaceState(null, location.state.nextPathname)
+        }else {
+            this.history.replaceState(null, '/');
+        }
     },
     _onFailLogin: function () {
         for (var item in arguments) {
