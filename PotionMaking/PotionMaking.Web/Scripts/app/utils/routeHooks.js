@@ -15,6 +15,10 @@ var hooks = {
         if (!token) {
             replaceState({ nextPathname: nextState.location.pathname }, '/login')
         }
+    },
+    logout: function (nextState, replaceState) {
+        TokenStore.clearAuthToken();
+        replaceState(null, '/login')
     }
 }
 module.exports = hooks;

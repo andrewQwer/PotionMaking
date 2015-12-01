@@ -30,7 +30,11 @@ var tokenStore = {
     getAuthToken: function(){
         var token = JSON.parse(localStorage.getItem(AUTH_TOKEN_KEY));
         return token;
+    },
+    clearAuthToken: function(){
+        localStorage.removeItem(AUTH_TOKEN_KEY);
     }
+
 };
 
 module.exports = tokenStore;

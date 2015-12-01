@@ -27,8 +27,9 @@ ReactDOM.render(
     </Route>
     <Route path="/auth" component={Auth}>
         <IndexRoute component={Login}/>
-        <Route path="/login" component={Login}/>
-        <Route path="/register" component={Register}/>
+        <Route path="/login" component={Login} onEnter={hooks.checkAnonymous}/>
+        <Route path="/logout" onEnter={hooks.logout}/>
+        <Route path="/register" component={Register} onEnter={hooks.checkAnonymous}/>
         <Route path="/registerSuccess" component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
     </Route>
 </Router>,
