@@ -48,7 +48,7 @@ var Register = React.createClass({
             $(this.refs.submitBtn).button('loading');
             RegisterAction.registerUser(regData);
         } else {
-            toastr.error("Заполните правильно все необходимые поля")
+            toastr.error(config.Messages.FillInputs);
         }
     },
     render: function () {
@@ -56,23 +56,24 @@ var Register = React.createClass({
             <div className="register-component">
                 <form id="reg-form">
                     <div className="form-group">
-                        <label htmlFor="reg-username">Username</label>
+                        <label htmlFor="reg-username">Имя пользователя</label>
                         <input type="text" ref="username" id="reg-username" name="reg-username" className="form-control"
-                               placeholder="Username"/>
+                               placeholder="Введите имя пользователя"/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="reg-email">Email address</label>
-                        <input type="text" ref="email" id="reg-email" name="reg-email" className="form-control" placeholder="Email"/>
+                        <label htmlFor="reg-email">Email</label>
+                        <input type="text" ref="email" id="reg-email" name="reg-email" className="form-control"
+                               placeholder="Введите email"/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="reg-pass">Password</label>
+                        <label htmlFor="reg-pass">Пароль</label>
                         <input type="password" ref="pass" id="reg-pass" name="reg-pass" className="form-control"
-                               placeholder="Password"/>
+                               placeholder="Введите пароль"/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="reg-repeat-pass">Repeat Password</label>
+                        <label htmlFor="reg-repeat-pass">Повторите пароль</label>
                         <input type="password" ref="confirmPass" id="reg-repeat-pass" name="reg-repeat-pass" className="form-control"
-                               placeholder="Repeat password"/>
+                               placeholder="Повторите пароль"/>
                     </div>
                     <div className="form-group">
                         <input ref="submitBtn" type="button" data-loading-text="Загрузка..." className="btn btn-default" onClick={this.submitRegistration}

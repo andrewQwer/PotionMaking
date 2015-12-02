@@ -8,8 +8,8 @@ var Auth = React.createClass({
     render: function () {
         return (
             <div className="auth-component">
-                <Link to={config.LocalUrl.Login} activeClassName='active'>Login</Link>
-                <Link to={config.LocalUrl.Register} activeClassName='active'>Register</Link>
+                <Link to={config.LocalUrl.Login} activeClassName='active'>Войти</Link>
+                <Link to={config.LocalUrl.Register} activeClassName='active'>Зарегестрироваться</Link>
                 {this.props.children}
             </div>
         )

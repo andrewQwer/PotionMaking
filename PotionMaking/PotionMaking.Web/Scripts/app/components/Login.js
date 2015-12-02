@@ -47,7 +47,7 @@ var Login = React.createClass({
             $(this.refs.submitBtn).button('loading');
             LoginAction.loginUser(authData);
         } else {
-            toastr.error("Заполните правильно все необходимые поля")
+            toastr.error(config.Messages.FillInputs);
         }
     },
     render: function () {
@@ -55,27 +55,32 @@ var Login = React.createClass({
             <div className="login-component">
                 <form id="auth-form">
                     <div className="form-group">
-                        <label htmlFor="auth-username">Email address</label>
+                        <label htmlFor="auth-username">Логин</label>
                         <input type="text"
                                className="form-control"
                                id="auth-username"
                                name="auth-username"
-                               placeholder="Username"
+                               placeholder="Введите имя пользователя"
                                ref="login"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="auth-password">Password</label>
+                        <label htmlFor="auth-password">Пароль</label>
                         <input type="password"
                                className="form-control"
                                id="auth-password"
                                name="auth-password"
-                               placeholder="Password"
+                               placeholder="Введите пароль"
                                ref="password"
                         />
                     </div>
                     <div className="form-group">
-                        <input ref='submitBtn' type="button" className="btn btn-default" data-loading-text="Вход..." value="Войти" onClick={this.submitLogin}/>
+                        <input ref='submitBtn'
+                               type="button"
+                               className="btn btn-default"
+                               data-loading-text="Вход..."
+                               value="Войти"
+                               onClick={this.submitLogin}/>
                     </div>
                 </form>
             </div>

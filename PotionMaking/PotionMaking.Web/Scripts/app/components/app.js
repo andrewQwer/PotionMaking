@@ -8,8 +8,7 @@ var App = React.createClass({
     render: function () {
         return (
             <div>
-               This is inner app
-                <br/>
+                <h3>Здесь будет содержимое страницы</h3>
                 <Link to={config.LocalUrl.Logout}>Выйти</Link>
             </div>
         )

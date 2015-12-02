@@ -268,13 +268,6 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app\bootstrap.js" />
-    <Content Include="Scripts\app\components\NotFound.js" />
-    <Content Include="Scripts\app\components\App.js" />
-    <Content Include="Scripts\app\components\Auth.js" />
-    <Content Include="Scripts\app\components\Index.js" />
-    <Content Include="Scripts\app\components\Login.js" />
-    <Content Include="Scripts\app\components\Register.js" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\Vendor\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="Scripts\Vendor\bootstrap\dist\css\bootstrap-theme.min.css" />
