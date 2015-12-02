@@ -6,7 +6,7 @@ var Index = React.createClass({
     render:function(){
         return (
             <div className="pm-app">
-                <div>Зельеварение</div>
+                <h1>Зельеварение</h1>
                 {this.props.children}
             </div>
         )

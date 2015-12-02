@@ -16,6 +16,12 @@ var hooks = {
             replaceState({ nextPathname: nextState.location.pathname }, '/login')
         }
     },
+    checkAnonymous: function (nextState, replaceState) {
+        var token = TokenStore.getAuthToken();
+        if (token) {
+            replaceState(null, '/');
+        }
+    },
     logout: function (nextState, replaceState) {
         TokenStore.clearAuthToken();
         replaceState(null, '/login')
