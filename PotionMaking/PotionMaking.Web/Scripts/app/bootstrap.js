@@ -18,18 +18,17 @@ var RegisterSuccess = require('./components/RegisterSuccess');
 var Router = require('react-router').Router;
 var browserHistory = require('history/lib/createBrowserHistory');
 var hooks = require('./utils/routeHooks');
+var config = require('./config');
 
 ReactDOM.render(
 <Router history={browserHistory()}>
-    <Route path="/" component={Index}>
+    <Route path={config.LocalUrl.Root} component={Index}>
         <IndexRoute component={App} onEnter={hooks.checkAuthorized}/>
-        <Route path="about" component={About}/>
-        <Route path="/auth" component={Auth}>
-            <IndexRoute component={Login}/>
-            <Route path="/login" component={Login} onEnter={hooks.checkAnonymous}/>
-            <Route path="/logout" onEnter={hooks.logout}/>
-            <Route path="/register" component={Register} onEnter={hooks.checkAnonymous}/>
-            <Route path="/registerSuccess" component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
+        <Route component={Auth}>
+            <Route path={config.LocalUrl.Login} component={Login} onEnter={hooks.checkAnonymous}/>
+            <Route path={config.LocalUrl.Logout} onEnter={hooks.logout}/>
+            <Route path={config.LocalUrl.Register} component={Register} onEnter={hooks.checkAnonymous}/>
+            <Route path={config.LocalUrl.RegisterSuccess} component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
         </Route>
     </Route>
 </Router>,

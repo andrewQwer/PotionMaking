@@ -29,7 +29,7 @@ var Register = React.createClass({
     _onRegister: function () {
         //this will allow to open success page only once after registration
         var registrationToken = TokenStore.generateRegistrationToken();
-        this.history.pushState(null, '/registerSuccess', {rt: registrationToken});
+        this.history.pushState(null, config.LocalUrl.RegisterSuccess, {rt: registrationToken});
     },
     _onFailRegister: function () {
         for (var item in arguments) {

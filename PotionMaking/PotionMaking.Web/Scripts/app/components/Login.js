@@ -29,7 +29,7 @@ var Login = React.createClass({
         if (location.state && location.state.nextPathname) {
             this.history.replaceState(null, location.state.nextPathname)
         }else {
-            this.history.replaceState(null, '/');
+            this.history.replaceState(null, config.LocalUrl.Root);
         }
     },
     _onFailLogin: function () {

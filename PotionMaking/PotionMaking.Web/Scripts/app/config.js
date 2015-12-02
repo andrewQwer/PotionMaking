@@ -5,6 +5,13 @@ module.exports = {
         RegisterUser: '/api/accounts/create',
         LoginUser: '/api/token'
     },
+    LocalUrl: {
+        Root: '/',
+        Login: '/login',
+        Register: '/register',
+        RegisterSuccess: '/registerSuccess',
+        Logout: '/logout'
+    },
     Validation: {
         Registration: {
             messages: {
