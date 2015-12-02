@@ -35,6 +35,7 @@ var Register = React.createClass({
         for (var item in arguments) {
             toastr.error(arguments[item]);
         }
+        $(this.refs.submitBtn).button('reset');
     },
     submitRegistration: function () {
         if ($('#reg-form').valid()) {
@@ -44,6 +45,7 @@ var Register = React.createClass({
                 password: this.refs.pass.value,
                 confirmPassword: this.refs.confirmPass.value,
             }
+            $(this.refs.submitBtn).button('loading');
             RegisterAction.registerUser(regData);
         } else {
             toastr.error("Заполните правильно все необходимые поля")
@@ -73,8 +75,8 @@ var Register = React.createClass({
                                placeholder="Repeat password"/>
                     </div>
                     <div className="form-group">
-                        <input type="button" className="btn btn-default" onClick={this.submitRegistration}
-                               value="Submit"/>
+                        <input ref="submitBtn" type="button" data-loading-text="Загрузка..." className="btn btn-default" onClick={this.submitRegistration}
+                               value="Зарегестрироваться"/>
                     </div>
                 </form>
             </div>

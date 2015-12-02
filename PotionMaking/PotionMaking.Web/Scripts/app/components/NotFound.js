@@ -4,7 +4,7 @@ var React = require('react');
 
 var About = React.createClass({
     render: function () {
-        return <h2>About</h2>;
+        return <h2>404</h2>;
     }
 });
 

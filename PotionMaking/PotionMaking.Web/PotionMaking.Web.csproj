@@ -269,7 +269,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\bootstrap.js" />
-    <Content Include="Scripts\app\components\About.js" />
+    <Content Include="Scripts\app\components\NotFound.js" />
     <Content Include="Scripts\app\components\App.js" />
     <Content Include="Scripts\app\components\Auth.js" />
     <Content Include="Scripts\app\components\Index.js" />

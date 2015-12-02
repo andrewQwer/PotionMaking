@@ -8,7 +8,7 @@ toastr.options.preventDuplicates = true;
 /* routes */
 var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
-var About = require('./components/About');
+var NotFound = require('./components/NotFound');
 var App = require('./components/App');
 var Index = require('./components/Index');
 var Login = require('./components/Login');
@@ -31,5 +31,6 @@ ReactDOM.render(
             <Route path={config.LocalUrl.RegisterSuccess} component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
         </Route>
     </Route>
+    <Route path="*" component={NotFound} />
 </Router>,
 document.getElementById('pm-app'));

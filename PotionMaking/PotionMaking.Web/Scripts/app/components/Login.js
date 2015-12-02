@@ -36,6 +36,7 @@ var Login = React.createClass({
         for (var item in arguments) {
             toastr.error(arguments[item]);
         }
+        $(this.refs.submitBtn).button('reset');
     },
     submitLogin: function() {
         if ($('#auth-form').valid()) {
@@ -43,6 +44,7 @@ var Login = React.createClass({
                 username: this.refs.login.value,
                 password: this.refs.password.value
             }
+            $(this.refs.submitBtn).button('loading');
             LoginAction.loginUser(authData);
         } else {
             toastr.error("Заполните правильно все необходимые поля")
@@ -73,7 +75,7 @@ var Login = React.createClass({
                         />
                     </div>
                     <div className="form-group">
-                        <input type="button" className="btn btn-default" value="Submit" onClick={this.submitLogin}/>
+                        <input ref='submitBtn' type="button" className="btn btn-default" data-loading-text="Вход..." value="Войти" onClick={this.submitLogin}/>
                     </div>
                 </form>
             </div>
