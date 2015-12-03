@@ -1,4 +1,5 @@
 var TokenStore = require('../stores/TokenStore');
+var UserStore = require('../stores/UserStore');
 var config = require('../config');
 
 var hooks = {
@@ -24,7 +25,7 @@ var hooks = {
         }
     },
     logout: function (nextState, replaceState) {
-        TokenStore.clearAuthToken();
+        UserStore.clearCurrentUser();
         replaceState(null, config.LocalUrl.Login)
     }
 }

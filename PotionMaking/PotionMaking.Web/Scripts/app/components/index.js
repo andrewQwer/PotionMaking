@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var AppActions = require('../actions/AppAction');
 
 var Index = React.createClass({
     render:function(){

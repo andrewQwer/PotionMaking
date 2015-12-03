@@ -20,11 +20,9 @@ namespace PotionMaking.Web.Controllers
     [RoutePrefix("api/accounts")]
     public class AccountsController : BaseApiController
     {
-        private IAuthService authService;
         private IMediator mediator;
-        public AccountsController(IAuthService authService, IMediator mediator)
+        public AccountsController(IMediator mediator)
         {
-            this.authService = authService;
             this.mediator = mediator;
         }
 
@@ -50,6 +48,8 @@ namespace PotionMaking.Web.Controllers
 
         }
 
+
+
         [Authorize(Roles = "Admin")]
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
@@ -63,6 +63,22 @@ namespace PotionMaking.Web.Controllers
 
             return NotFound();
 
+        }
+
+        [Authorize]
+        [Route("user", Name = "GetCurrentUser")]
+        public async Task<IHttpActionResult> GetCurrentUser()
+        {
+            try
+            {
+                var user = mediator.Send(new GetUserViewModelRequest(User.Identity.Name));
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Write("Error getting current user", ex);
+                return BadRequest(ErrorMessages.Oops);
+            }
         }
 
         [Route("create")]

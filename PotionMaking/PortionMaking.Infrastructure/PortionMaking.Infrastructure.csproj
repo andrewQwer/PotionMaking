@@ -144,6 +144,7 @@
     <Compile Include="Logger\NullLog.cs" />
     <Compile Include="Logger\PequestParametersProvider.cs" />
     <Compile Include="Mediator\Handlers\ValidatorHandler.cs" />
+    <Compile Include="Mediator\Requests\GetUserViewModelRequest.cs" />
     <Compile Include="Mediator\Requests\RegisterUserRequest.cs" />
     <Compile Include="Migrations\201507171328205_InitialCreate.cs" />
     <Compile Include="Migrations\201507171328205_InitialCreate.Designer.cs">

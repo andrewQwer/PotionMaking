@@ -3,6 +3,7 @@
 module.exports = {
     Url: {
         RegisterUser: '/api/accounts/create',
+        LoadUser: '/api/accounts/user',
         LoginUser: '/api/token'
     },
     LocalUrl: {

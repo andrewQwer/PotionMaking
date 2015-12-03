@@ -9,7 +9,7 @@ var regAction = {
             data: data
         });
     }
-}
+};
 
 module.exports = regAction;
 

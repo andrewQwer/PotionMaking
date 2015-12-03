@@ -5,6 +5,7 @@ var History = require('react-router').History;
 var config = require('../config');
 var LoginAction = require('../actions/LoginAction');
 var UserStore = require('../stores/UserStore');
+var AppAction = require('../actions/AppAction');
 
 var Login = React.createClass({
     mixins: [History],

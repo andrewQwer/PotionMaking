@@ -2,14 +2,13 @@
 var dispatcher = require('../dispatcher/AppDispatcher');
 var ActionConstants = require('./ActionConstants');
 
-var loginAction = {
-    loginUser: function (data) {
+var appAction = {
+    loadUser: function () {
         dispatcher.dispatch({
-            type: ActionConstants.LOGIN_USER,
-            data: data
+            type: ActionConstants.LOAD_USER
         });
     }
 };
 
-module.exports = loginAction;
+module.exports = appAction;
 

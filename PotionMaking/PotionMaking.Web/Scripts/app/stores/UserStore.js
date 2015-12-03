@@ -10,7 +10,47 @@ var REGISTER_FAIL_EVENT = 'register_fail_event';
 var LOGIN_EVENT = 'login_event';
 var LOGIN_FAIL_EVENT = 'login_fail_event';
 
+var _currentUser = null;
 var userStore = $.extend({}, EventEmitter.prototype, {
+    isAuthorized: function () {
+        return !!TokenStore.getAuthToken();
+    },
+    clearCurrentUser:function(){
+        TokenStore.clearAuthToken();
+        _currentUser = null;
+    },
+    loadUser: function (cb) {
+        if (this.isAuthorized()) {
+            var token = TokenStore.getAuthToken().access_token;
+            $.ajax({
+                    url: config.Url.LoadUser,
+                    type: 'GET',
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                })
+                .done(function (res) {
+                    _currentUser = res;
+                })
+                .fail(function (res) {
+                    if (res.status === 401) {
+                        userStore.clearCurrentUser();
+                    }
+                })
+                .always(function(){
+                    if (cb) {
+                        cb();
+                    }
+                })
+        } else{
+            if (cb) {
+                cb();
+            }
+        }
+    },
+    getCurrentUser: function(){
+        return _currentUser;
+    },
     emit: function (evt, data) {
         this.trigger(evt, data);
     },
@@ -80,8 +120,10 @@ userStore.dispatchToken = dispatcher.register(function (action) {
                     data: authData
                 })
                 .done(function (data) {
-                    TokenStore.setAuthToken(data)
-                    userStore.emit(LOGIN_EVENT);
+                    TokenStore.setAuthToken(data);
+                    userStore.loadUser(function(){
+                        userStore.emit(LOGIN_EVENT);
+                    });
                 })
                 .fail(function (res) {
                     if (res.status === 400) {
@@ -94,6 +136,9 @@ userStore.dispatchToken = dispatcher.register(function (action) {
                         }
                     }
                 });
+            break;
+        case ActionConstants.LOAD_USER:
+            userStore.loadUser();
             break;
         default:
             // do nothing
