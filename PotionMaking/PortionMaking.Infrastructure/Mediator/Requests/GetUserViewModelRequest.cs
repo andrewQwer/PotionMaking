@@ -1,5 +1,6 @@
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNet.Identity;
 using PortionMaking.Infrastructure.Identity;
 using PortionMaking.Models.ViewModels;
 
@@ -26,7 +27,7 @@ namespace PortionMaking.Infrastructure.Mediator.Requests
 
         public UserViewModel Handle(GetUserViewModelRequest request)
         {
-            var user = userManager.FindByNameAsync(request.Username).Result;
+            var user = userManager.FindByName(request.Username);
             return Mapper.Map<UserViewModel>(user);
         }
     }

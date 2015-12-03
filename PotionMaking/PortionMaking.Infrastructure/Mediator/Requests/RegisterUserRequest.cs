@@ -39,7 +39,7 @@ namespace PortionMaking.Infrastructure.Mediator.Requests
                 EmailConfirmed = true
             };
 
-            var addUserResult = userManager.CreateAsync(user, request.Password).Result;
+            var addUserResult = userManager.Create(user, request.Password);
             return addUserResult;
         }
     }

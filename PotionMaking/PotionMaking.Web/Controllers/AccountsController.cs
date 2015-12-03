@@ -66,8 +66,8 @@ namespace PotionMaking.Web.Controllers
         }
 
         [Authorize]
-        [Route("user", Name = "GetCurrentUser")]
-        public async Task<IHttpActionResult> GetCurrentUser()
+        [Route("user")]
+        public IHttpActionResult GetCurrentUser()
         {
             try
             {
@@ -83,7 +83,7 @@ namespace PotionMaking.Web.Controllers
 
         [Route("create")]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateUser([FromBody]CreateUserViewModel createUserModel)
+        public IHttpActionResult CreateUser([FromBody]CreateUserViewModel createUserModel)
         {
             try
             {
