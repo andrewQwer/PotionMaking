@@ -11,6 +11,8 @@ module.exports = {
         Login: '/login',
         Register: '/register',
         RegisterSuccess: '/registerSuccess',
+        GameRoom: '/rooms',
+        CreateRoom: '/createRoom',
         Logout: '/logout'
     },
     Validation: {

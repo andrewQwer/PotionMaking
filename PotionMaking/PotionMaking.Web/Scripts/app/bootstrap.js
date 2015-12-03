@@ -9,7 +9,6 @@ toastr.options.preventDuplicates = true;
 var UserStore = require('./stores/UserStore');
 
 UserStore.loadUser(function(){
-    debugger
     /* routes */
     var Route = require('react-router').Route;
     var IndexRoute = require('react-router').IndexRoute;
@@ -19,6 +18,8 @@ UserStore.loadUser(function(){
     var Login = require('./components/Login');
     var Auth = require('./components/Auth');
     var Register = require('./components/Register');
+    var GameRoom = require('./components/GameRoom');
+    var CreateRoom = require('./components/CreateRoom');
     var RegisterSuccess = require('./components/RegisterSuccess');
     var Router = require('react-router').Router;
     var browserHistory = require('history/lib/createBrowserHistory');
@@ -29,12 +30,17 @@ UserStore.loadUser(function(){
         <Router history={browserHistory()}>
             <Route path={config.LocalUrl.Root} component={Index}>
                 <IndexRoute component={App} onEnter={hooks.checkAuthorized}/>
+                <Route component={App}>
+                    <Route path={config.LocalUrl.GameRoom} component={GameRoom}/>
+                    <Route path={config.LocalUrl.CreateRoom} component={CreateRoom}/>
+                </Route>
                 <Route component={Auth}>
                     <Route path={config.LocalUrl.Login} component={Login} onEnter={hooks.checkAnonymous}/>
                     <Route path={config.LocalUrl.Logout} onEnter={hooks.logout}/>
                     <Route path={config.LocalUrl.Register} component={Register} onEnter={hooks.checkAnonymous}/>
                     <Route path={config.LocalUrl.RegisterSuccess} component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
                 </Route>
+
             </Route>
             <Route path="*" component={NotFound} />
         </Router>,
