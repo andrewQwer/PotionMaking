@@ -2,10 +2,10 @@
 
 var React = require('react');
 
-var About = React.createClass({
+var errorPage = React.createClass({
     render: function () {
         return <h2>404</h2>;
     }
 });
 
-module.exports = About;
+module.exports = errorPage;
