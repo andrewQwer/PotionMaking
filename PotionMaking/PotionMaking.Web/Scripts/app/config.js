@@ -40,7 +40,21 @@ module.exports = {
                     minlength: $.validator.format("Введите как минимум {0} символов")
                 }
             }
+        },
+        CreateRoom: {
+            messages: {
+                'players-number': {
+                    required: 'Введите количество игроков',
+                    digits: 'Введите только цифры',
+                    range: $.validator.format('Количество игроков должно быть от {0} до {1}')
+                },
+                'room-pass': {
+                    required:'Введите пароль',
+                    minlength: $.validator.format("Введите как минимум {0} символов")
+                }
+            }
         }
+
     },
     Messages: {
         Oops: "Случилось что-то непредвиденное, попробуйте повторить запрос позже.",
