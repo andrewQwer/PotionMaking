@@ -30,7 +30,7 @@ UserStore.loadUser(function(){
         <Router history={browserHistory()}>
             <Route path={config.LocalUrl.Root} component={Index}>
                 <IndexRoute component={App} onEnter={hooks.checkAuthorized}/>
-                <Route component={App}>
+                <Route component={App} onEnter={hooks.checkAuthorized}>
                     <Route path={config.LocalUrl.GameRoom} component={GameRoom}/>
                     <Route path={config.LocalUrl.CreateRoom} component={CreateRoom}/>
                 </Route>
