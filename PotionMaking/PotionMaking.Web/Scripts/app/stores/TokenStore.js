@@ -1,5 +1,8 @@
 'use strict';
 
+var dispatcher = require('../dispatcher/AppDispatcher');
+var ActionConstants = require('../actions/ActionConstants');
+
 var rand = function () {
     return Math.random().toString(36).substr(2); // remove `0.`
 };
@@ -36,5 +39,17 @@ var tokenStore = {
     }
 
 };
-
+tokenStore.dispatchToken = dispatcher.register(function (action) {
+    switch (action.type) {
+        case ActionConstants.LOGIN_USER_SUCCESS:
+            tokenStore.setAuthToken(action.data);
+            break;
+        case ActionConstants.LOAD_USER_FAIL:
+            tokenStore.clearAuthToken();
+            break;
+        default:
+            // do nothing
+            break;
+    }
+});
 module.exports = tokenStore;

@@ -1,6 +1,7 @@
 'use strict';
 var dispatcher = require('../dispatcher/AppDispatcher');
 var ActionConstants = require('./ActionConstants');
+var apiUtils = require('../utils/WebApiUtils');
 
 var loginAction = {
     loginUser: function (data) {
@@ -8,6 +9,7 @@ var loginAction = {
             type: ActionConstants.LOGIN_USER,
             data: data
         });
+        apiUtils.loginUser(data);
     }
 };
 
