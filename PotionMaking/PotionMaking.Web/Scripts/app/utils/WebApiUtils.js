@@ -57,6 +57,9 @@ var utils = {
                 }
             })
         return res;
+    },
+    createRoom: function(){
+
     }
 };
 

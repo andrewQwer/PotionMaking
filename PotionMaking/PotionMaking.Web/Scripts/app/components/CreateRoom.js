@@ -2,6 +2,7 @@
 
 var React = require('react');
 var config = require('../config');
+var RoomActions = require('../actions/RoomActions');
 
 var createRoom = React.createClass({
     getInitialState: function () {
@@ -12,12 +13,13 @@ var createRoom = React.createClass({
     },
     createRoom:function(){
         if ($('#create-room-form').valid()){
-            var authData = {
-                username: this.refs.login.value,
-                password: this.refs.password.value
+            var roomData = {
+                playersNumber: this.refs.players.value,
+                isPrivate: this.state.isPrivate,
+                password: this.state.isPrivate ? this.refs.password.value : ''
             }
             $(this.refs.submitBtn).button('loading');
-            LoginAction.loginUser(authData);
+            RoomActions.createRoom(roomData);
         } else{
             toastr.error(config.Messages.FillInputs);
         }
@@ -73,7 +75,9 @@ var createRoom = React.createClass({
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
                             <input type="button"
+                                   ref="submitBtn"
                                    className="btn btn-default"
+                                   data-loading-text="Создание комнаты..."
                                    value="Создать"
                                    onClick={this.createRoom}
                             />
