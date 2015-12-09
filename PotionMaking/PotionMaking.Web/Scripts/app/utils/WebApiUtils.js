@@ -40,7 +40,8 @@ var utils = {
     },
     loadUser: function () {
         var token = TokenStore.getAuthToken().access_token;
-        $.ajax({
+        var res =
+            $.ajax({
                 url: config.Url.LoadUser,
                 type: 'GET',
                 headers: {
@@ -55,6 +56,7 @@ var utils = {
                     ServerAction.loadUserFail(res);
                 }
             })
+        return res;
     }
 };
 

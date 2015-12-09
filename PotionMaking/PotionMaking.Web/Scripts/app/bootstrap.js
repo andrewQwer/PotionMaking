@@ -40,7 +40,6 @@ UserStore.loadUser(function(){
                     <Route path={config.LocalUrl.Register} component={Register} onEnter={hooks.checkAnonymous}/>
                     <Route path={config.LocalUrl.RegisterSuccess} component={RegisterSuccess} onEnter={hooks.checkRegistrationToken}/>
                 </Route>
-
             </Route>
             <Route path="*" component={NotFound} />
         </Router>,

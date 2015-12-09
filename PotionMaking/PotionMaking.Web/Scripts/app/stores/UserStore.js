@@ -4,8 +4,8 @@ var dispatcher = require('../dispatcher/AppDispatcher');
 var ActionConstants = require('../actions/ActionConstants');
 var EventEmitter = require('wolfy87-eventemitter');
 var TokenStore = require('./TokenStore');
+var apiUtils = require('../utils/WebApiUtils');
 var config = require('../config');
-var TokenStore = require('./TokenStore');
 var REGISTER_EVENT = 'register_event';
 var REGISTER_FAIL_EVENT = 'register_fail_event';
 var LOGIN_EVENT = 'login_event';
@@ -22,28 +22,13 @@ var userStore = $.extend({}, EventEmitter.prototype, {
     },
     loadUser: function (cb) {
         if (this.isAuthorized()) {
-            var token = TokenStore.getAuthToken().access_token;
-            $.ajax({
-                    url: config.Url.LoadUser,
-                    type: 'GET',
-                    headers: {
-                        Authorization: 'Bearer ' + token
-                    }
-                })
-                .done(function (res) {
-                    _currentUser = res;
-                })
-                .fail(function (res) {
-                    if (res.status === 401) {
-                        userStore.clearCurrentUser();
-                    }
-                })
+            apiUtils.loadUser()
                 .always(function(){
                     if (cb) {
                         cb();
                     }
                 })
-        } else{
+        } else {
             if (cb) {
                 cb();
             }
