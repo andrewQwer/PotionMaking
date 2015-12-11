@@ -25,6 +25,7 @@ namespace PotionMaking.Web.Controllers
         }
 
         [Route("create")]
+        [Authorize]
         [HttpPost]
         public IHttpActionResult CreateRoom([FromBody]CreateRoomApiModel model)
         {
