@@ -42,8 +42,7 @@ namespace PotionMaking.Web.Providers
             }
 
             var identity = await user.GenerateUserIdentityAsync(userManager);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
+            identity.AddClaim(new Claim("id", user.Id));
 
             var ticket = new AuthenticationTicket(identity, null);
             context.Validated(ticket);

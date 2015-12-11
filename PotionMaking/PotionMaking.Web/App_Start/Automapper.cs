@@ -10,6 +10,7 @@ namespace PotionMaking.Web
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<AccountProfile>();
+                cfg.AddProfile<RoomProfile>();
             });
         }
     }

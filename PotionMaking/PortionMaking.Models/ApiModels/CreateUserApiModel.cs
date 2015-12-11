@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PortionMaking.Models.ViewModels
+namespace PortionMaking.Models.ApiModels
 {
-    public class CreateUserViewModel
+    public class CreateUserApiModel
     {
         [Display(Name = "Email")]
         public string Email { get; set; }

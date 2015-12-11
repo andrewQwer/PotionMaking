@@ -18,6 +18,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Practices.ServiceLocation;
+using PortionMaking.Infrastructure.DAL;
 using PortionMaking.Infrastructure.Mediator.Handlers;
 using PortionMaking.Infrastructure.Services;
 using PortionMaking.Infrastructure.Settings;
@@ -42,6 +43,7 @@ namespace PotionMaking.Web.DependencyResolution.Registries {
                     scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
                     scanner.ConnectImplementationsToTypesClosing(typeof(IValidator<>));
                 });
+            For(typeof(IRepository<>)).Use(typeof(PmDbRepository<>));
             For(typeof(IRequestHandler<,>)).DecorateAllWith(typeof(ValidatorHandler<,>));
             For<ISettingsProvider>().Singleton().Use<WebConfigSettingsProvider>();
             For<ServiceLocatorProvider>().Use(new ServiceLocatorProvider(() => StructuremapMvc.StructureMapDependencyScope));

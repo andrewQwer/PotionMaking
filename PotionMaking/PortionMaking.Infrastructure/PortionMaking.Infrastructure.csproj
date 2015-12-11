@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
@@ -128,6 +132,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automapper\AccountProfile.cs" />
+    <Compile Include="Automapper\RoomProfile.cs" />
+    <Compile Include="DAL\IRepository.cs" />
+    <Compile Include="DAL\Mapping\GameRoomMap.cs" />
+    <Compile Include="DAL\PmDbContext.cs" />
+    <Compile Include="DAL\PmDbRepository.cs" />
     <Compile Include="Exceptions\CustomValidationException.cs" />
     <Compile Include="Factories\ModelFactory.cs" />
     <Compile Include="Identity\ApplicationDbContext.cs" />
@@ -144,13 +153,21 @@
     <Compile Include="Logger\NullLog.cs" />
     <Compile Include="Logger\PequestParametersProvider.cs" />
     <Compile Include="Mediator\Handlers\ValidatorHandler.cs" />
+    <Compile Include="Mediator\Requests\RoomExistsRequest.cs" />
     <Compile Include="Mediator\Requests\GetUserViewModelRequest.cs" />
+    <Compile Include="Mediator\Requests\CreateRoomRequest.cs" />
     <Compile Include="Mediator\Requests\RegisterUserRequest.cs" />
-    <Compile Include="Migrations\201507171328205_InitialCreate.cs" />
-    <Compile Include="Migrations\201507171328205_InitialCreate.Designer.cs">
-      <DependentUpon>201507171328205_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\Auth\201512111039040_AuthMigration.cs" />
+    <Compile Include="Migrations\Auth\201512111039040_AuthMigration.Designer.cs">
+      <DependentUpon>201512111039040_AuthMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Auth\Configuration.cs" />
+    <Compile Include="Migrations\PmDb\201512111229120_PmDbMigration.cs" />
+    <Compile Include="Migrations\PmDb\201512111229120_PmDbMigration.Designer.cs">
+      <DependentUpon>201512111229120_PmDbMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\PmDb\Configuration.cs" />
+    <Compile Include="ModelValidation\CreateRoomRequestValidator.cs" />
     <Compile Include="ModelValidation\RegisterUserRequestValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthService.cs" />
@@ -164,17 +181,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507171328205_InitialCreate.resx">
-      <DependentUpon>201507171328205_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PortionMaking.Models\PortionMaking.Models.csproj">
       <Project>{de252429-79cb-4108-9b17-88320c2d9d59}</Project>
       <Name>PortionMaking.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\Auth\201512111039040_AuthMigration.resx">
+      <DependentUpon>201512111039040_AuthMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\PmDb\201512111229120_PmDbMigration.resx">
+      <DependentUpon>201512111229120_PmDbMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

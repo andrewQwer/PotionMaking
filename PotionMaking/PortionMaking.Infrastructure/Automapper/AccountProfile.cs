@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PortionMaking.Infrastructure.Identity;
 using PortionMaking.Infrastructure.Mediator.Requests;
+using PortionMaking.Models.ApiModels;
 using PortionMaking.Models.ViewModels;
 
 namespace PortionMaking.Infrastructure.Automapper
@@ -9,7 +10,7 @@ namespace PortionMaking.Infrastructure.Automapper
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<CreateUserViewModel, RegisterUserRequest>();
+            Mapper.CreateMap<CreateUserApiModel, RegisterUserRequest>();
             Mapper.CreateMap<ApplicationUser, UserViewModel>();
         }
     }

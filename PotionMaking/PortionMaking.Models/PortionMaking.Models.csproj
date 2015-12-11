@@ -86,14 +86,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModels\CreateRoomApiModel.cs" />
     <Compile Include="Constants\ErrorMessages.cs" />
     <Compile Include="CreateRoleBindingModel.cs" />
+    <Compile Include="DAL\GameRoom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleReturnModel.cs" />
     <Compile Include="UserReturnModel.cs" />
     <Compile Include="UsersInRoleModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\CreateUserViewModel.cs" />
+    <Compile Include="ApiModels\CreateUserApiModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

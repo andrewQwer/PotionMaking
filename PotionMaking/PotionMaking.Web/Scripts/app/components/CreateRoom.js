@@ -28,7 +28,7 @@ var createRoom = React.createClass({
         var validation = $.extend({}, {
             rules: {
                 'players-number': {required: true, digits: true, range:[2,4]},
-                'room-pass': {required: true, minlength: 6}
+                'room-pass': {required: true, rangelength: [6, 10]}
             }
         }, config.Validation.CreateRoom);
         $('#create-room-form').validate(validation);

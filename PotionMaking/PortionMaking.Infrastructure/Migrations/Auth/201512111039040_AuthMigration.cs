@@ -1,9 +1,9 @@
-namespace PortionMaking.Infrastructure.Migrations
+namespace PortionMaking.Infrastructure.Migrations.Auth
 {
     using System;
     using System.Data.Entity.Migrations;
-
-    public partial class InitialCreate : DbMigration
+    
+    public partial class AuthMigration : DbMigration
     {
         public override void Up()
         {
@@ -16,7 +16,7 @@ namespace PortionMaking.Infrastructure.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-
+            
             CreateTable(
                 "dbo.UserRoles",
                 c => new
@@ -29,7 +29,7 @@ namespace PortionMaking.Infrastructure.Migrations
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
-
+            
             CreateTable(
                 "dbo.Users",
                 c => new
@@ -50,7 +50,7 @@ namespace PortionMaking.Infrastructure.Migrations
                     })
                 .PrimaryKey(t => t.UserId)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
-
+            
             CreateTable(
                 "dbo.UserClaims",
                 c => new
@@ -63,7 +63,7 @@ namespace PortionMaking.Infrastructure.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-
+            
             CreateTable(
                 "dbo.UserLogins",
                 c => new
@@ -75,9 +75,9 @@ namespace PortionMaking.Infrastructure.Migrations
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-
+            
         }
-
+        
         public override void Down()
         {
             DropForeignKey("dbo.UserRoles", "UserId", "dbo.Users");

@@ -12,6 +12,7 @@ using PortionMaking.Infrastructure.Identity;
 using PortionMaking.Infrastructure.Logger;
 using PortionMaking.Infrastructure.Mediator.Requests;
 using PortionMaking.Infrastructure.Services;
+using PortionMaking.Models.ApiModels;
 using PortionMaking.Models.Constants;
 using PortionMaking.Models.ViewModels;
 
@@ -83,7 +84,7 @@ namespace PotionMaking.Web.Controllers
 
         [Route("create")]
         [HttpPost]
-        public IHttpActionResult CreateUser([FromBody]CreateUserViewModel createUserModel)
+        public IHttpActionResult CreateUser([FromBody]CreateUserApiModel createUserModel)
         {
             try
             {

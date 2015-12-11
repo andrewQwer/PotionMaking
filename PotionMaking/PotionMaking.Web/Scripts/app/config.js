@@ -50,7 +50,7 @@ module.exports = {
                 },
                 'room-pass': {
                     required:'Введите пароль',
-                    minlength: $.validator.format("Введите как минимум {0} символов")
+                    rangelength: $.validator.format("Введите как минимум {0} символов (максимум {1})")
                 }
             }
         }

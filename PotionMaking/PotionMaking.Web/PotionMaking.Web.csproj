@@ -250,6 +250,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="DependencyResolution\Conventions\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\Conventions\SettingsConvention.cs" />
     <Compile Include="DependencyResolution\Registries\IdentityRegistry.cs" />
